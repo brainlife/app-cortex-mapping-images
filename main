@@ -12,7 +12,7 @@ surface=`jq -r '.surface' config.json`
 [ -z "$FREESURFER_LICENSE" ] && echo "Please set FREESURFER_LICENSE in .bashrc" && exit 1;
 echo $FREESURFER_LICENSE > license.txt
 
-if [[ ${surface} == 'midthickness']]; then
+if [[ ${surface} == 'midthickness' ]]; then
   time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://brainlife/freesurfer-mini:6.0.1 ./convert-surfaces.sh
 fi
 
