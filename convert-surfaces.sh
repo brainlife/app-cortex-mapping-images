@@ -22,5 +22,5 @@ if [ ! -f ./output/surf/lh.midthickness.very_inflated ] || [ ! -f ./output/surf/
 	echo "midthickness surface conversion failed. please check derivatives and logs"
 	exit 1
 else
-	echo "midthickness surfacer converted"
+	echo "midthickness surface converted"
 fi
