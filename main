@@ -22,7 +22,7 @@ else
 fi
 
 # generate images
-time singularity exec -e docker://brainlife/pysurfer:0.10.0 ./generate-images.py
+time singularity exec -e docker://brainlife/pysurfer:0.10.0 ./create-images.py
 
 # clean up
 rm -rf cortexmap output
