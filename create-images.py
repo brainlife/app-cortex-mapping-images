@@ -4,14 +4,6 @@ def generateMeasureOverlayImage(subjectID,hemi,surf,measure_file,colormap,min_pe
 
 	import os,sys
 	# import vtk
-	os.environ['ETS_TOOLKIT'] = 'qt4'
-	os.environ['QT_API'] = 'pyqt5'
-	import pyvista
-	from pyvista.utilities import xvfb
-	pyvista.OFF_SCREEN=True
-	xvfb.start_xvfb()
-	from mne.viz import set_3d_backend
-	set_3d_backend('pyvista')
 	import mne
 	import nibabel as nib
 	import numpy as np
@@ -66,8 +58,16 @@ def main():
 	import json
 	import numpy as np
 	import nibabel as nib
+	os.environ['ETS_TOOLKIT'] = 'qt4'
+	os.environ['QT_API'] = 'pyqt5'
+	import pyvista
+	from pyvista.utilities import xvfb
+	pyvista.OFF_SCREEN=True
+	xvfb.start_xvfb()
+	from mne.viz import set_3d_backend
+	set_3d_backend('pyvista')
 
-		# grab config
+	# grab config
 	with open('config.json','r') as config_f:
 		config = json.load(config_f)
 
@@ -95,6 +95,7 @@ def main():
 
 	for h in hemi:
 		for i in measureFiles:
+			print('generating image for %s.%s' %(h,i))
 			if surface == 'midthickness':
 				generateMeasureOverlayImage(freesurfer,h,'midthickness.very_inflated',i,colormap,min_percentile,max_percentile,threshold,outdir,'cortexmap')
 			else:
