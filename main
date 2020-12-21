@@ -17,7 +17,8 @@ echo $FREESURFER_LICENSE > license.txt
 if [[ ${surface} == 'midthickness' ]]; then
   time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://brainlife/freesurfer-mini:6.0.1 ./convert-surfaces.sh
 else
-  cp -R ${freesurfer} ./output && chmod 
+  cp -R ${freesurfer} ./output/ && chmod -R +rw ./output/
+  cp -R ${cortexmap} ./cortexmap/ && chmod -R +rw ./cortexmap/
 fi
 
 # generate images
