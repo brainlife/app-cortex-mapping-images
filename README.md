@@ -46,7 +46,7 @@ You can submit this App online at [https://doi.org/10.25663/brainlife.app.461](h
    "surface": "midthickness",
    "min_percentile": 4,
    "max_percentile": 96,
-   "threshold": 0.00000001
+   "threshold": 0.00000001,
    "colormap": "videen_style"
 } 
 ``` 
