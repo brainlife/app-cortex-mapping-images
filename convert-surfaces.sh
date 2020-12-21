@@ -8,8 +8,8 @@ hemisphere="lh rh"
 set -x
 
 # make copies of freesurfer and cortexmap directories
-cp -Rw ${freesurfer} ./output/
-cp -Rw ${cortexmap} ./cortexmap/
+cp -R ${freesurfer} ./output/ && chmod 755 ./output/
+cp -R ${cortexmap} ./cortexmap/ && chmod 755 ./cortexmap/
 
 # convert midthickness surfaces for pysurfer
 for hemi in $hemisphere
