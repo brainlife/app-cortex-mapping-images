@@ -70,7 +70,7 @@ bl dataset download
 
 ## Output 
 
-The main output of this App is contain a PNG image of the input. 
+The main output of this App is contain a folder containing jpg images of lateral and medial views of cortex mapped data.
 
 #### Product.json 
 
