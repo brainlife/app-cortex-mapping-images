@@ -7,6 +7,8 @@ set -x
 set -e
 
 surface=`jq -r '.surface' config.json`
+freesurfer=`jq -r '.freesurfer' config.json`
+cortexmap=`jq -r '.cortexmap' config.json`
 
 # convert surfaces
 [ -z "$FREESURFER_LICENSE" ] && echo "Please set FREESURFER_LICENSE in .bashrc" && exit 1;
@@ -14,6 +16,8 @@ echo $FREESURFER_LICENSE > license.txt
 
 if [[ ${surface} == 'midthickness' ]]; then
   time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://brainlife/freesurfer-mini:6.0.1 ./convert-surfaces.sh
+else
+  cp -R ${freesurfer} ./output && chmod 
 fi
 
 # generate images
