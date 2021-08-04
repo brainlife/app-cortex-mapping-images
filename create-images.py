@@ -17,7 +17,6 @@ def generateMeasureOverlayImage(subjectID,surf,rois,measure_file,colormap,min_pe
 	import numpy as np
 	from matplotlib.colors import LinearSegmentedColormap
 	import matplotlib.pyplot as plt
-	from surfer import project_volume_data
 
 	os.environ['SUBJECTS_DIR'] = './'
 	os.environ['XDG_RUNTIME_DIR'] = './'
