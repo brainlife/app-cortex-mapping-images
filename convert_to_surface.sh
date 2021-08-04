@@ -11,7 +11,7 @@ hemi="lh rh"
 [ ! -d ./rois ] && cp -R ${rois} ./rois && rois="./rois" && chmod -R +rw ${rois}
 
 roiFiles=`ls ${rois}`
-
+export SUBJECTS_DIR=./
 for i in ${roiFiles}
 do
 	measureName=${i//.nii.gz/}
