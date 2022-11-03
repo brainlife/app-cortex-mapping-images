@@ -17,14 +17,14 @@ do
 	measureName=${i//.nii.gz/}
 	if [[ "${measureName}" == *"left"* ]] || [[ "${measureName}" == *"lh"* ]] || [[ "${measureName}" == *"LH"* ]] || [[ "${measureName}" == *"Left"* ]] || [[ "${measureName}" == *"LEFT"* ]]; then
 		h="lh"
-		[ ! -f "${rois}/${h}_${measureName}.gii" ] && mri_vol2surf --src ${rois}/${i} --hemi ${h} --surf white --regheader freesurfer --out "${rois}/${h}_${measureName}.gii" --projdist-max 0 4 .1
+		[ ! -f "${rois}/${h}_${measureName}.gii" ] && mri_vol2surf --src ${rois}/${i} --hemi ${h} --surf white --regheader freesurfer --out "${rois}/${h}_${measureName}.gii" --projdist-max 0 6 .1
 	elif [[ "${measureName}" == *"right"* ]] || [[ "${measureName}" == *"rh"* ]] || [[ "${measureName}" == *"RH"* ]] || [[ "${measureName}" == *"Right"* ]] || [[ "${measureName}" == *"RIGHT"* ]]; then
 		h="rh"
-		[ ! -f "${rois}/${h}_${measureName}.gii" ] && mri_vol2surf --src ${rois}/${i} --hemi ${h} --surf white --regheader freesurfer --out "${rois}/${h}_${measureName}.gii" --projdist-max 0 4 .1
+		[ ! -f "${rois}/${h}_${measureName}.gii" ] && mri_vol2surf --src ${rois}/${i} --hemi ${h} --surf white --regheader freesurfer --out "${rois}/${h}_${measureName}.gii" --projdist-max 0 6 .1
 	else
 		for h in ${hemi}
 		do
-			[ ! -f "${rois}/${h}_${measureName}.gii" ] && mri_vol2surf --src ${rois}/${i} --hemi ${h} --surf white --regheader freesurfer --out "${rois}/${h}_${measureName}.gii" --projdist-max 0 4 .1
+			[ ! -f "${rois}/${h}_${measureName}.gii" ] && mri_vol2surf --src ${rois}/${i} --hemi ${h} --surf white --regheader freesurfer --out "${rois}/${h}_${measureName}.gii" --projdist-max 0 6 .1
 		done
 	fi
 done
