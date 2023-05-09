@@ -78,9 +78,8 @@ def main():
 	min_percentile = config['min_percentile']
 	max_percentile = config['max_percentile']
 	threshold = np.float(config['threshold'])
-	measureFiles = np.unique([ f.split('h.')[1] for f in os.listdir('./'+cortexmap+'/func') if f.split('h.')[1] != 'goodvertex.func.gii' ])
+	measureFiles = np.unique([ f for f in os.listdir('./'+cortexmap+'/func') if f.split('h.')[1] != 'goodvertex.func.gii' ])
 	surface = config['surface']
-	hemi=["lh","rh"]
 
 	#### set up other inputs ####
 	# set outdir
@@ -93,12 +92,12 @@ def main():
 		print("making output directory")
 		os.mkdir(outdir)
 
-	for h in hemi:
-		for i in measureFiles:
-			if surface == 'midthickness':
-				generateMeasureOverlayImage(freesurfer,h,'midthickness.very_inflated',i,colormap,min_percentile,max_percentile,threshold,outdir,'cortexmap')
-			else:
-				generateMeasureOverlayImage(freesurfer,h,surface,i,colormap,min_percentile,max_percentile,threshold,outdir,'cortexmap')
+	for i in measureFiles:
+		h = i.split('.')[0]
+		if surface == 'midthickness':
+			generateMeasureOverlayImage(freesurfer,h,'midthickness.very_inflated',i,colormap,min_percentile,max_percentile,threshold,outdir,'cortexmap')
+		else:
+			generateMeasureOverlayImage(freesurfer,h,surface,i,colormap,min_percentile,max_percentile,threshold,outdir,'cortexmap')
 
 if __name__ == '__main__':
 	main()
