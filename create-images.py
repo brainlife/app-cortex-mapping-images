@@ -32,7 +32,7 @@ def generateMeasureOverlayImage(subjectID,hemi,surf,measure_file,colormap,min_pe
 		brain = mne.viz.Brain(subjectID,hemi,surf,offscreen=True,show=False,views=figviews,size=(2400,1600))
 
 		# load measure file gifti
-		measure_file_data = nib.load(os.path.join('./cortexmap/func/'+hemi+'.'+measure_file))
+		measure_file_data = nib.load(os.path.join('./cortexmap/func/'+measure_file))
 		measure_file_data = measure_file_data.darrays[0].data
 
 		# compute min, median, and max percentiles
