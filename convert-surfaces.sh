@@ -14,7 +14,7 @@ cp -R ${cortexmap} ./cortexmap/ && chmod -R +rw ./cortexmap/
 # convert midthickness surfaces for pysurfer
 for hemi in $hemisphere
 do
-	mris_convert ./cortexmap/surf/${hemi}.midthickness.very_inflated.native.surf.gii ./output/surf/${hemi}.midthickness.very_inflated
+	mris_convert ./cortexmap/surf/${hemi}.midthickness.very_inflated.*.surf.gii ./output/surf/${hemi}.midthickness.very_inflated
 done
 
 # check
