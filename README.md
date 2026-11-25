@@ -3,6 +3,35 @@
 
 # Generate images of cortex mapped data
 
+<!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
+
+**Projects tract endpoint density ROIs onto the FreeSurfer white surface and renders JPEG images of each on the cortical surface with PySurfer, for visual quality control.**
+
+Maps every volume in the ROIs datatype to the left and/or right white surface with mri_vol2surf (hemisphere inferred from the file name), then draws each map on the chosen surface with PySurfer using the chosen colormap and percentile range, saving several views as JPEGs. Use it to inspect where tracts terminate on the cortex. ROIs must be in the FreeSurfer subject's space (header registration is assumed). Visualisation only.
+
+Run it on brainlife.io: [https://doi.org/10.25663/brainlife.app.555](https://doi.org/10.25663/brainlife.app.555)
+
+| Input | Datatype | Required | Description |
+|---|---|---|---|
+| `freesurfer` | `neuro/freesurfer` | yes | Path to the freesurfer dataset. Needed for image generation, even when surface = midthickness |
+| `rois` | `neuro/rois` (tractEndpointDensity) | yes | Tract endpoint density volumes, one NIfTI per tract end; files whose names contain left/lh or right/rh are mapped to that hemisphere only. Must be aligned to the FreeSurfer subject (mri_vol2surf --regheader). |
+
+| Output | Datatype | Description |
+|---|---|---|
+| `images` | `generic/images` | File containing multiple images of different views of each tract endpoint |
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `surface` | enum | `inflated` | Surface to use in the image. Pial, white, and inflated come from freesurfer's standard segmentation. Midthickness comes from Cortex Mapping datatype Options: `pial`, `white`, `inflated`. |
+| `min_percentile` | number | `4` | Minimum percentile to map to colorbar |
+| `max_percentile` | number | `96` | Maximum percentile to map to colorbar |
+| `threshold` | number | `1e-09` | Threshold value to use for computing minimum, median, and maximum values to map colormap to. Will update to plot only data above threshold once functionality is available. |
+| `colormap` | enum | `hot` | Matplotlib colormap to use for representing data mapped to cortical surface. 'Videen_style' is based on Connectome Workbench's and nilearn's colormap scheme. Default: videen_style Options: `videen_style`, `viridis`, `plasma`, `inferno`, `magma`, `cividis`, `Greys`, `Purples`, `Blues`, `Greens`, `Reds`, `YlOrBr`, `YlOrRd`, `OrRd`, `PuRd`, `RdPu`, `BuPu`, `GnBu`, `PuBu`, `YlGnBu`, `PuBuGn`, `BuGn`, `YlGn`, `binary`, `gist_yarg`, `gist_gray`, `gray`, `bone`, `pink`, `spring`, `summer`, `autumn`, `winter`, `cool`, `Wistia`, `hot`, `afmhot`, `gist_heat`, `copper`, `PiYG`, `PRGn`, `BrBG`, `PuOr`, `RdGy`, `RdBu`, `RdYlBu`, `RdYlGn`, `Spectral`, `coolwarm`, `bwr`, `seismic`, `twilight`, `twilight_shifted`, `hsv`, `flag`, `prism`, `ocean`, `gist_earth`, `terrain`, `gist_stern`, `gnuplot`, `gnuplot2`, `CMRmap`, `cubehelix`, `brg`, `gist_rainbow`, `rainbow`, `jet`, `turbo`, `nipy_spectral`, `gist_ncar`. |
+
+Runtime: container `brainlife/freesurfer:6.0.0`; 4 CPUs; 1 h walltime; needs `FREESURFER_LICENSE`.
+
+<!-- brainlife-app:end -->
+
 This app will generate images (jpgs) of data mapped to the cortical surface using MNE-python's (https://mne.tools/stable/index.html) build of pysurfer (https://pysurfer.github.io/index.html). Images (jpgs) of lateral and medial views of data mapped to a given surface are outputted. The intent of these apps is to provide quick QA and to potentially generate figures for a paper figure.
 
 ### Authors 
